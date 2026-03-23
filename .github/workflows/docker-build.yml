@@ -1,0 +1,13 @@
+name: Docker build
+on: [push]
+jobs:
+  docker-build:
+    runs-on: ubuntu-24.04-arm
+    env:
+      DOCKER_REPO: "rnestler/archlinuxarm-rust"
+    steps:
+      - uses: actions/checkout@v6
+      - name: Download rootfs
+        run: ./download-and-verify.sh
+      - name: Build Docker image
+        run: ./build.sh beta nightly stable
