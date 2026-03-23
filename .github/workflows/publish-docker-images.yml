@@ -1,0 +1,30 @@
+name: Publish Docker
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 2 * * 0'
+
+jobs:
+  publish:
+    runs-on: ubuntu-24.04-arm
+    environment: Docker Deploy
+    env:
+      DOCKER_REPO: "rnestler/archlinuxarm-rust"
+    steps:
+      - uses: actions/checkout@v6
+      - name: Download rootfs
+        run: ./download-and-verify.sh
+      - name: Build Docker image
+        run: ./build.sh 1.93.0 1.93.1 1.94.0 beta nightly stable
+      - name: Tag stable as latest
+        run: docker tag "$DOCKER_REPO":stable "$DOCKER_REPO":latest
+      - name: Login to Docker Hub
+        uses: docker/login-action@v4
+        with:
+          username: ${{ secrets.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_TOKEN }}
+      - name: Push all tags
+        run: ./push.sh 1.93.0 1.93.1 1.94.0 beta nightly stable latest
