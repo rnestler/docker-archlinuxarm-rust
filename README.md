@@ -4,6 +4,10 @@
 
 Docker container for archlinuxarm with the rust toolchain installed.
 
+It's based on the [generic AArch64 rootfs
+image](https://archlinuxarm.org/platforms/armv8/generic) with some unnecessary
+bits removed.
+
 ## Tags
 
 The image is tagged with the Rust release channel. It gets built regularly with
