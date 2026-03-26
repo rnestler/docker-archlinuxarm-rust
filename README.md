@@ -1,6 +1,8 @@
 # docker-archlinuxarm-rust
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/rnestler/archlinuxarm-rust)](https://hub.docker.com/r/rnestler/archlinuxarm-rust)
+[![GitHub Repo](https://img.shields.io/badge/github-repo-blue?logo=github)](https://github.com/rnestler/docker-archlinuxarm-rust)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/rnestler/docker-archlinuxarm-rust/publish-docker-images.yml)
 
 Docker container for archlinuxarm with the rust toolchain installed.
 
